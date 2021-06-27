@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  background-color: #0a33a1; 
+  border: none;
+  color: rgb(228, 213, 213);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+}
+</style>
+</head>
+<body>
+  <form method="POST" action="">
+    <input type="text" style="color:rgb(0, 0, 0);" name="tag" value="{{tag}}">
+    <input type="submit" value="Search">
+  </form>
+  {%for pic in main%} 
+  <a href="/picture/{{pic.id}}">
+      <img src="{{ url_for('static', filename=pic.path) }}" width="300" height="150" title="{{pic.tags}}">
+    </a>
+  {%endfor%} 
+  {%for pic in pics%} 
+  <a href="/picture/{{pic.id}}">
+      <img src="{{ url_for('static', filename=pic.path) }}" width="200" height="100" title="{{pic.tags}}">
+    </a>
+  {%endfor%} 
+  <div>
+  {% if page != 0 %} 
+  <a class="button" href="/search/{{tag}}/{{page-1}}">
+    Previous
+  </a>
+  {%endif%} 
+  <a class="button" href="/search/{{tag}}/{{page+1}}">
+    Next
+  </a>
+</div>
+</body>
+</html>
+
+
